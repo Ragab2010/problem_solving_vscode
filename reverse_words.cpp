@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cstring>
 #include<algorithm>
+#include<sstream>
 
 using namespace std;
 
@@ -78,6 +79,23 @@ void reverse_string_v2_cpp(string & cppstring){
     }
 }
 
+void reverse_string_v3_cpp(string& cppstring) {
+    std::reverse(cppstring.begin(), cppstring.end());
+    stringstream ss(cppstring);
+    string word;
+    string new_string = "";
+    while (ss >> word) {
+        std::reverse(word.begin(), word.end());
+        new_string += word;
+        if (!ss.eof()) { // check if the next word is available
+            new_string += " ";
+        }
+    }
+    cppstring = new_string;
+    cppstring.shrink_to_fit();
+}
+
+
 
 int main(){
     cout<<"---------------------reverse_string_c-----------------"<<endl;
@@ -103,6 +121,12 @@ int main(){
     cout<<"the origin:"<<cppstringcppv2<<endl;
     reverse_string_v2_cpp(cppstringcppv2);
     cout<<"new_string:"<<cppstringcppv2<<endl;
+
+    cout<<"---------------------reverse_string_v3_cpp-----------------"<<endl;
+    string cppstringv3="king is here";
+    cout<<"the origin:"<<cppstringv3<<endl;
+    reverse_string_v3_cpp(cppstringv3);
+    cout<<"new_string:"<<cppstringv3<<endl;
 
 
 
