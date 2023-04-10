@@ -48,16 +48,6 @@ int main(){
     cout<<"the max count   :"<<count_most_ones_between_zeros_string_c(c_string)<<endl;
     cout<<"---------------------count_most_ones_between_zeros_string_cpp-----------------"<<endl;
     cout<<"the max count   :"<<count_most_ones_between_zeros_string_cpp(c_string)<<endl;
-    // cout<<"---------------------count_most_repeated_search_cpp-----------------"<<endl;
-    // string cpp_string= "wwleecccommmeee"s;
-    // cout<<"the origin:"<<cpp_string<<endl;
-    // cout<<"the max count   :"<<count_most_repeated_search_cpp(cpp_string)<<endl;
-    // cout<<"---------------------count_most_repeated_map_cpp-----------------"<<endl;
-    // string cpp_string2= "wwleecccommmeee"s;
-    // cout<<"the origin:"<<cpp_string2<<endl;
-    // cout<<"the max count   :"<<count_most_repeated_map_cpp(cpp_string)<<endl;
-
-
 
     return 0;
 }
