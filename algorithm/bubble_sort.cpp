@@ -19,6 +19,22 @@ void bubble_sort_v1(int *a , int size){
     }
     
 }
+void bublle_Sort_v2(int *a , int size){
+	int i,j,temp , isSorted=1;
+	for(i =0 ; i < size ;i++){
+		for(j=size-1; j > i ;j--){
+			if(a[j-1] > a[j]){
+				temp = a[j-1];
+                a[j-1] = a[j];
+                a[j] = temp;
+                isSorted = 0;
+			}
+		}
+		if(isSorted)
+			break;
+	}
+}
+
 
 void bubble_sort(int * arr, int n) {
     int  temp;
