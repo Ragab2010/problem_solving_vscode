@@ -49,7 +49,6 @@ int remove_duplicate_c(int * a , int  size , int **new_array , int *new_size){
             new_index++;
             newSize++;
         }
-
     }
     //resize the new_aray 
     *new_array =(int *)realloc(*new_array  , newSize*sizeof(int));
