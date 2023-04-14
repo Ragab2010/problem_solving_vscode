@@ -26,18 +26,15 @@ int find_first_consecutive_duplicates_element_sortedArray_v2(int *a  , int size)
     int right = size - 1;
 
     while (left < right) {
-        int mid = (left + right) / 2;
-
-        if (a[mid] == a[mid + 1]) {
-            return mid;
-        } else if (a[mid] < a[mid + 1]) {
-            left = mid + 1;
-        } else {
-            right = mid;
-        }
+		int mid = (left +right)/2;
+		if(a[mid] == a[mid+1]){
+			return mid;
+		}else if (a[mid] < a[mid+1]){
+			left = mid +1;
+		}else{
+			right = mid -1;
+		}
     }
-
-    return -1;
 
 	return -1;
 }
