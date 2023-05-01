@@ -8,6 +8,7 @@ bool is_power_of_two(uint32_t number){
     if(number <=1)
         return  false;
     return (number & (number -1 )) == 0;
+    //  return ((x != 0) && (!(x & (x - 1))));
 }
 
 
