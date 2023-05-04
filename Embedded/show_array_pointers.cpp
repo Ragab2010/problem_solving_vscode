@@ -5,6 +5,21 @@
 
 using namespace std;
 /*
+sizeof int 4byte
+int arr[3][3] ;//2D array
+-> arr is pointer to int [3]   , so arr+1 increment by 3*sizeof(int)
+-&arr is pointer to int [3][3], so &arr+1 increment by 3*3*sizeof(int)
+- arr[0] is pointer to int    , so  arr[0]+1 increment by sizeof(int)
+->&arr[0] is pointer to int[3] , so &arr[0]+1 increment by 3*sizeof(int)
+- arr[0][0] is the [3][3] int element , 
+-&arr[0][0] is pointer to [3][3] int element , so &arr[0][0]+1 increment by sizeof(int)
+--then arr=&arr[0]  ==>  *arr=arr[0] ==>  **a=*arr[0]=arr[0][0]
+
+int (*ptr_1D)[3];//pointer to 1D array , or pointer to int [3].
+--then ptr_1D= arr = &arr[0]
+
+int (*ptr_2D)[3][];//pointer to 2D array , or pointer to int [3][3].
+--then ptr_2D= &arr  ==> (*ptr_2D)= arr
 
 Assuming the size of the integer is 4 bytes and the beginning address of the array is 0.
 #include <stdio.h>
