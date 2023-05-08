@@ -22,7 +22,10 @@ int * parse_stringArray(char *cstring , int *int_array_size){
         //cout<<*next_number<<endl;
         next_number++;
     }else{
+        //parse the number until the none digit 
         int parse_number =strtol(next_number , &next_number , 10);
+        //push it at the int array with increment the index_intArray,
+        //to know the size of int_array 
         int_array[index_intArray]=parse_number;
         index_intArray++;
         //cout<<parse_number<<endl;
@@ -30,9 +33,9 @@ int * parse_stringArray(char *cstring , int *int_array_size){
     } 
     parse_index++;
     }
+    //resize the int_array with the index_intArray
     int* new_int_array =(int *)realloc(int_array , sizeof(int)* index_intArray);
-    //int* new_int_array = (int*) realloc(int_array, index_intArray * sizeof(int));
-
+    //write the index_intArray to pointer to tell the caller the size of int_array
     *int_array_size=index_intArray;
     return new_int_array;
 }
