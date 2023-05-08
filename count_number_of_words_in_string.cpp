@@ -7,6 +7,29 @@
 
 
 using namespace std;
+/****************************************************************/
+int count_number_of_words_in_string_simpleVersion_c(char * cstring){
+    int len = strlen(cstring);
+    if(len <=1)
+        return -1;
+    int count=0;
+    char nonwords[] = " .,;\n\t";
+    
+    for (int i = 0; i < len;i++)
+    {
+        if(!isalpha(cstring[i])){
+            i++;
+        }else{
+            count++;
+            while(isalpha(cstring[i]) && i < len){
+                i++;
+            }
+        }
+    }
+    return count;
+}
+
+/************************************************************************/
 int count_number_of_words_in_string_c(char * cstring){
     int len = strlen(cstring);
     if(len <=1)
@@ -14,7 +37,7 @@ int count_number_of_words_in_string_c(char * cstring){
     int count=0;
     char nonwords[] = " .,;\n\t";
 
-    for (int i = 0; i < len; i++)
+    for (int i = 0; i < len;)
     {
         //example: ., welcome;. in Egypt
         //skip all nonwords " .,;\n\t" character from string and stop when see reach any alphabet ( ., |welcome;. in Egypt)
@@ -43,7 +66,7 @@ int count_number_of_words_in_string_v1_c(char * cstring){
     int count=0;
     char nonwords[] = " .,;\n\t";
 
-    for (int i = 0; i < len; i++)
+    for (int i = 0; i < len; )
     {
         //example: ., welcome;. in Egypt
         //skip all nonwords " .,;\n\t" character from string and stop when see reach any alphabet ( ., |welcome;. in Egypt)
@@ -64,6 +87,7 @@ int count_number_of_words_in_string_v1_c(char * cstring){
     
     return count;
 }
+
 
 
 int count_number_of_words_in_string_cpp(string cppstring){
@@ -91,6 +115,9 @@ int main(){
     cout<<"the origin:"<<c_string<<endl;
     cout<<"the number of words:"<<count_number_of_words_in_string_c(c_string)<<endl;
 
+    cout<<"---------------------count_number_of_words_in_string_simpleVersion_c-----------------"<<endl;
+    cout<<"the number of words:"<<count_number_of_words_in_string_simpleVersion_c(c_string)<<endl;
+    
     cout<<"---------------------count_number_of_words_in_string_c-----------------"<<endl;
     cout<<"the number of words:"<<count_number_of_words_in_string_v1_c(c_string)<<endl;
     cout<<"---------------------count_number_of_words_in_string_cpp-----------------"<<endl;
