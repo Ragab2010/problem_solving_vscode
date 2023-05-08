@@ -15,7 +15,7 @@ int count_number_of_words_in_string_simpleVersion_c(char * cstring){
     int count=0;
     char nonwords[] = " .,;\n\t";
     
-    for (int i = 0; i < len;i++)
+    for (int i = 0; i < len;)
     {
         if(!isalpha(cstring[i])){
             i++;
@@ -117,7 +117,7 @@ int main(){
 
     cout<<"---------------------count_number_of_words_in_string_simpleVersion_c-----------------"<<endl;
     cout<<"the number of words:"<<count_number_of_words_in_string_simpleVersion_c(c_string)<<endl;
-    
+
     cout<<"---------------------count_number_of_words_in_string_c-----------------"<<endl;
     cout<<"the number of words:"<<count_number_of_words_in_string_v1_c(c_string)<<endl;
     cout<<"---------------------count_number_of_words_in_string_cpp-----------------"<<endl;
