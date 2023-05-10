@@ -1,6 +1,9 @@
-#include <iostream>
-#include <cstring>
-#include <cstdio>
+#include<iostream>
+#include<cstring>
+#include<cctype>
+#include<algorithm>
+#include<unordered_map>
+#include<sstream>
 
 
 /*
@@ -24,8 +27,8 @@ Output: "cbebebe"
 Input:  "2aabbcbbbadef"
 Output: "bbcbbb"
 */
-
 using namespace std;
+#define NUM_CHAR 128U
 char* KUniqueCharacters(char* str) {
     int k = str[0] - '0'; // convert first char to int
     int len = strlen(str) - 1; // exclude first char from length
@@ -54,12 +57,98 @@ char* KUniqueCharacters(char* str) {
     return str + max_start; // return pointer to max substring
 }
 
-int main() {
-    cout<<"---------------------K Unique Characters-----------------"<<endl;
+int getSizeOfFreqArray(char * freq_char){
+    int size =0;
+    for (int i = 0; i < NUM_CHAR; i++){
+        if(freq_char[i] >0){
+            size++;
+        }
+    }
+    return size;
+}
+char * k_unique_characters_string_c(char *cstring){
+    if(cstring== nullptr)
+        return NULL;
+    int len  = strlen(cstring);
+    char freq_char[NUM_CHAR]={0};
+    char long_unique_substr[len-1];
+    int max_substr =0;
+    int index_substr=0;
 
-    char str1[] = "3aabacbebebe";
-    char str2[] = "2aabbcbbbadef";
-    printf("%s\n", KUniqueCharacters(str1)); // expected output: "cbebebe"
-    printf("%s\n", KUniqueCharacters(str2)); // expected output: "bbcbbb"
+    if(!isdigit(cstring[0])){
+        return NULL;
+    }
+    int  k = cstring[0]-'0';
+    int l =1 , h = 1 ,  max=0;
+    int count_character=0;
+
+    while(l <= len && h <= len){
+        freq_char[cstring[h]]++;
+        int size = getSizeOfFreqArray(freq_char);
+        count_character++;
+        if(size >k){
+            if(count_character > max_substr){
+                max_substr = count_character;
+                index_substr=0;//initialize  index_substr by zero to start from beginning
+                for (int i = l; i <h; i++){
+                    long_unique_substr[index_substr]=cstring[i];
+                    index_substr++;
+                }
+                long_unique_substr[index_substr]='\0';                
+            }
+                freq_char[cstring[l]]--;
+                l++;
+                count_character--;
+        }
+        h++;
+    }
+    cout<<"the substr is:"<<long_unique_substr<<endl;
+    return NULL;
+}
+
+string KUniqueCharacters_v2(string str) {
+  const size_t k{static_cast<size_t>(str[0] - '0')};
+
+
+  const size_t str_len{str.length()};
+
+  size_t current_substr_len{str_len - 1};
+
+  while (current_substr_len >= k) {
+    unordered_map<char, size_t> char_freq{};
+
+    for (size_t i{1}; i <= current_substr_len; i++)
+      char_freq[str[i]]++;
+
+    for (size_t i{1}; i + current_substr_len <= str_len; i++) {
+      if (i > 1) {
+        char_freq[str[i - 1]]--;
+        if (0 == char_freq[str[i - 1]])
+          char_freq.erase(str[i - 1]);
+
+        char_freq[str[i + current_substr_len - 1]]++;
+      }
+
+      if (k == char_freq.size())
+        return str.substr(i, current_substr_len);
+    }
+
+    current_substr_len--;
+  }
+
+  ostringstream oss{};
+
+  oss << "Could not find sub-string with " << k << " unique characters!";
+  return oss.str();
+}
+int main(){
+
+    cout<<"---------------------k_unique_characters_string_c-----------------"<<endl;
+    char cstring[]="3aabacbebebe" ; // "2aabbcbbbadef";
+    cout<<"the origin:"<<cstring<<endl;
+    char * pointer = k_unique_characters_string_c(cstring);
+    //cout<<KUniqueCharacters_v2(cstring)<<endl;
+    //cout<<"k_unique_characters is:"<<pointer<<endl;
+
     return 0;
 }
