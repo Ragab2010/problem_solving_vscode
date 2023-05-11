@@ -56,7 +56,9 @@
         "cstring": "cpp",
         "bitset": "cpp",
         "cinttypes": "cpp",
-        "ctime": "cpp"
+        "ctime": "cpp",
+        "unordered_set": "cpp",
+        "chrono": "cpp"
     }   
     
 }
