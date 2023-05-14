@@ -29,6 +29,53 @@ Output: "-1"
 #include <cctype>
 
 using namespace std;
+char * LetterCount_vif(const char * cstring ){
+    static char result[60];
+    strcpy(result , "-1");
+    int index_reslut=0;
+    if(cstring== nullptr)
+        return result;
+    int len = strlen(cstring);
+    if(len <=1)
+        return result;
+    int freq_char [128]={0};
+    int max = 0;
+    int l = 0 , h= 0;
+    while(l< len ){
+        /*
+        while (!isalnum(cstring[l]) && l< len){
+            l++;
+        }*/
+        //replace while by if && remove l< len
+        if (!isalnum(cstring[l]) ){
+            l++;
+            //add continue
+            continue;
+        }
+        int freq_char [128]={0};
+        int count =0;
+        int start_index = l;
+        while (isalnum(cstring[l]) && l< len){
+            if(freq_char[cstring[l]] >0){
+                count++;
+                freq_char[cstring[l]]++;
+            }else{
+                freq_char[cstring[l]]++;
+            }
+            l++;
+        }
+        if(count > max){
+            max = count;
+            for (int i = start_index; i < l; i++){
+                result[index_reslut] = cstring[i];
+                index_reslut++;
+            }
+            result[index_reslut] = '\0';
+        }
+
+    }
+    return result;
+}
 
 char * LetterCount_v0(const char * cstring ){
     static char result[60];
@@ -231,7 +278,7 @@ int main() {
 //        << '\n';  // expected output: "Hello"
 //   cout << LetterCount_v2(move(string{"No words"}))
     //    << '\n';  // expected output: "-1"
-  cout << LetterCount_v0("No words")<<endl;
+  cout << LetterCount_vif("Today, is the greatest day ever!")<<endl;
 
   return 0;
 }
