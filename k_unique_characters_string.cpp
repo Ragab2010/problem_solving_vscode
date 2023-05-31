@@ -71,15 +71,15 @@ char * k_unique_characters_string_c(char *cstring){
         return NULL;
     int len  = strlen(cstring);
     char freq_char[NUM_CHAR]={0};
-    char long_unique_substr[len-1];
+    char long_unique_substr[len-1];// we sub 1 because string come with K in index zero ("3aabacbebebe")
     int max_substr =0;
     int index_substr=0;
 
     if(!isdigit(cstring[0])){
         return NULL;
     }
-    int  k = cstring[0]-'0';
-    int l =1 , h = 1 ,  max=0;
+    int  k = cstring[0]-'0';   //we convert the digit from character to integer
+    int l =1 , h = 1 ,  max=0; // l = h = 1 because we start from index 1
     int count_character=0;
 
     while(l <= len && h <= len){
@@ -144,7 +144,7 @@ string KUniqueCharacters_v2(string str) {
 int main(){
 
     cout<<"---------------------k_unique_characters_string_c-----------------"<<endl;
-    char cstring[]="3aabacbebebe" ; // "2aabbcbbbadef";
+    char cstring[]="3aabacbebebe" ; // "2aabbcbbbadef";//"2aabbcbbbadef";
     cout<<"the origin:"<<cstring<<endl;
     char * pointer = k_unique_characters_string_c(cstring);
     //cout<<KUniqueCharacters_v2(cstring)<<endl;
