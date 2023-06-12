@@ -24,6 +24,7 @@ Output: 0
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
+#include <cstring>
 
 using namespace std;
 
@@ -113,25 +114,68 @@ int TripleDouble_v3(int64_t num1, int64_t num2) {
   return 0;
 }
 /*********************************Ragab******************************/
+bool check(string str){
+  int count =0;
+  unordered_map<char , unsigned int> map;
+  for(char& ch : str){
+    if(map.find(ch) !=map.end()){
+      map[ch]++;
+      count++;
+    }else{
+      map[ch]++;
+      count=1;
+    }
+    if(count>2){
+      return true;
+    }
+  }
+  return false;
+}
 int TripleDouble_cpp_v1(int64_t num1, int64_t num2) {
   std::string str_num1{to_string(num1)};
   std::string str_num2{to_string(num2)};
+  int count =0;
   
-  unordered_map<char , unsigned int> map;
-  for(char& ch : str_num1){
-    map[ch]++;
-    if(map[ch]>2){
-      return 1;
+  bool str_num1_status = check(str_num1);
+  bool str_num2_status = check(str_num2);
+  if(str_num1_status==true || str_num2_status == true){
+    return 1;
+  }
+  return 0;
+
+}
+/************************slid_Window**********************/
+bool check_consecutive_characters(const char *cstring , int len){
+  int l = 0 , h=0;
+  int count =0;
+  while(l<len && h <len){
+    if(cstring[l] == cstring[h]){
+      count++;
+      h++;
+    }else{
+      l++;
+      count--;
+    }
+    if(count>2){
+      return true;
     }
   }
-map.clear();
-  for(char& ch : str_num2){
-    map[ch]++;
-    if(map[ch]>2){
-      return 1;
-    }
+  return false;
+}
+
+int TripleDouble_c_v1(int64_t num1, int64_t num2) {
+  char str_num1[50];
+  char str_num2[50];
+  sprintf(str_num1,"%ld" , num1);
+  sprintf(str_num2,"%ld" , num1);
+  int len1 =strlen(str_num1);
+  int len2 =strlen(str_num2);
+  bool str_num1_status = check_consecutive_characters(str_num1 , len1);
+  bool str_num2_status = check_consecutive_characters(str_num2 , len2);
+  if(str_num1_status==true || str_num2_status == true){
+    return 1;
   }
-return 0;
+  return 0;
 }
 
 int main() {
@@ -145,6 +189,11 @@ int main() {
   cout << TripleDouble_cpp_v1(451999277LL, 41177722899LL) << '\n'; // expected output: 1
   cout << TripleDouble_cpp_v1(465555LL, 5579LL) << '\n';               // expected output: 1
   cout << TripleDouble_cpp_v1(67844LL, 66237LL) << '\n';               // expected output: 0
+
+  cout<<"---------------------TripleDouble_c_v1-----------------"<<endl;
+  cout << TripleDouble_c_v1(451999277LL, 41177722899LL) << '\n'; // expected output: 1
+  cout << TripleDouble_c_v1(465555LL, 5579LL) << '\n';               // expected output: 1
+  cout << TripleDouble_c_v1(67844LL, 66237LL) << '\n';               // expected output: 0
 
   return 0;
 }
