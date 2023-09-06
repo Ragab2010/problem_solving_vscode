@@ -2,6 +2,7 @@
 #include<cstring>
 #include<algorithm>
 #include<vector>
+#include<unordered_map>
 
 
 
@@ -93,16 +94,20 @@ int count_most_consecutive_duplicates_slidingwindow_ragabVersion_c(int *a  , int
     return max;
 }
 
-int count_most_repeated_map_c(int *a  , int size ){
-    if(size  <=1)
-        return -1;
+int count_most_repeated_map_cpp(vector<int>& v ){
+
     int max=0;
-    char seen[256]={0};
-    for (int i = 0; i < size ; i++){
-        seen[a[i]]++;
-        if(seen[a[i]] > max){
-            max=seen[a[i]];
+    for(auto baseIndex = v.begin(); baseIndex != v.end();baseIndex++){
+        auto moveIndex = baseIndex;
+        std::unordered_map<int , int> map;
+        while((*baseIndex  == *moveIndex) && (moveIndex !=v.end())){
+            map[*baseIndex]++;
+            if(map[*baseIndex] > max){
+                max = map[*baseIndex];
+            }
+            moveIndex++;
         }
+        
     }
     
     
@@ -151,7 +156,7 @@ int main(){
     cout<<"---------------------count_most_consecutive_duplicates_slidingwindow_ragabVersion_c-----------------"<<endl;
     cout<<"the max count   :"<<count_most_consecutive_duplicates_slidingwindow_ragabVersion_c(arr , sizeof(arr)/sizeof(*arr))<<endl;
     
-    cout<<"---------------------count_most_repeated_search_cpp-----------------"<<endl;
+    cout<<"---------------------count_most_consecutive_duplicates_slidingwindow_cpp-----------------"<<endl;
     vector<int> v= {1,1,1,1,3,3,3,6,6,6,6,3,3,3,9,9,8,2,1,4,7,7,7,7,7};
     cout<<"the origin:";
     for (int i = 0; i <v.size(); i++)
@@ -159,6 +164,8 @@ int main(){
         cout<<arr[i]<<" ";
     }
     cout<<"the max count   :"<<count_most_consecutive_duplicates_slidingwindow_cpp(v)<<endl;
+    cout<<"---------------------count_most_repeated_map_cpp-----------------"<<endl;
+    cout<<"the max count   :"<<count_most_repeated_map_cpp(v)<<endl;
 
 
     return 0;
