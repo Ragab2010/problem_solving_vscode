@@ -135,6 +135,22 @@ int count_number_of_words_in_string_cpp_v1(string cppstring){
     return word_count; 
 }
 
+
+int count_number_of_words_in_string_cpp_v2(string cppstring){
+    std::stringstream ss(cppstring);
+    int word_count = 0;
+    std::string word;
+    while (ss>>word){
+        for(char c : word){
+            if(isalpha(c)){
+                word_count++;
+                break;
+            }
+        }
+    }
+    
+    return word_count; 
+}
 int main(){
 
     cout<<"---------------------count_number_of_words_in_string_c-----------------"<<endl;
@@ -151,6 +167,8 @@ int main(){
     cout<<"the number of words:"<<count_number_of_words_in_string_cpp(c_string)<<endl;
     cout<<"---------------------count_number_of_words_in_string_cpp_v1-----------------"<<endl;
     cout<<"the number of words:"<<count_number_of_words_in_string_cpp_v1(c_string)<<endl;
+    cout<<"---------------------count_number_of_words_in_string_cpp_v2-----------------"<<endl;
+    cout<<"the number of words:"<<count_number_of_words_in_string_cpp_v2(c_string)<<endl;
 
 
 
