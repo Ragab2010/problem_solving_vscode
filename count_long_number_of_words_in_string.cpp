@@ -77,6 +77,31 @@ int count_long_number_of_words_in_string_cpp(string cppstring){
     return longest;
 }
 
+int count_long_number_of_words_in_string_cpp_v1(string cppstring){
+    std::istringstream iss(cppstring);
+    std::string word;
+    std::string maxWord;
+    size_t maxWordLength = 0;
+
+    while (iss >> word) {
+        // Remove punctuation from the word
+        std::string cleanedWord;
+        for (char c : word) {
+            if (isalnum(c) || c == '-') {
+                cleanedWord += c;
+            }
+        }
+
+        // Check if the cleaned word is longer than the current max word
+        if (cleanedWord.length() > maxWordLength) {
+            maxWord = cleanedWord;
+            maxWordLength = cleanedWord.length();
+        }
+    }
+
+    return maxWordLength;
+}
+
 int main(){
 
     cout<<"---------------------count_long_number_of_words_in_string_c-----------------"<<endl;
@@ -89,6 +114,9 @@ int main(){
 
     cout<<"---------------------count_long_number_of_words_in_string_cpp-----------------"<<endl;
     cout<<"the long words is :"<<count_long_number_of_words_in_string_cpp(c_string)<<endl;
+
+    cout<<"---------------------count_long_number_of_words_in_string_cpp_v1-----------------"<<endl;
+    cout<<"the long words is :"<<count_long_number_of_words_in_string_cpp_v1(c_string)<<endl;
 
 
 
