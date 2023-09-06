@@ -2,6 +2,7 @@
 #include<cstring>
 #include<algorithm>
 #include<sstream>
+#include<limits>
 
 
 
@@ -107,6 +108,32 @@ int count_number_of_words_in_string_cpp(string cppstring){
     }
     return word_count;
 }
+int count_number_of_words_in_string_cpp_v1(string cppstring){
+    //std::vector<string> result; // Create a vector to store parsed integers
+    std::stringstream ss(cppstring); // Create a string stream from the input string
+
+    int word_count = 0;
+    string word;
+    //first while to extract all the none alphabetic character at the beginning 
+    while(!isalpha(ss.peek()) && !ss.eof()){
+            ss.ignore();
+            //cout<<" "<<(char)ss.peek()<<" "<<endl;
+    }
+    //extract world from string word by world
+    while (ss >> word) {
+         //second while to extract all the none alphabetic character in the middle
+        while(!isalpha(ss.peek()) && !ss.eof()){
+            ss.ignore();
+            //cout<<" "<<(char)ss.peek()<<" "<<endl;
+        }
+        word_count++;
+        //cout<<word<<" "<<word_count<<endl;
+        //result.push_back(word);
+        
+    }
+
+    return word_count; 
+}
 
 int main(){
 
@@ -122,7 +149,8 @@ int main(){
     cout<<"the number of words:"<<count_number_of_words_in_string_v1_c(c_string)<<endl;
     cout<<"---------------------count_number_of_words_in_string_cpp-----------------"<<endl;
     cout<<"the number of words:"<<count_number_of_words_in_string_cpp(c_string)<<endl;
-
+    cout<<"---------------------count_number_of_words_in_string_cpp_v1-----------------"<<endl;
+    cout<<"the number of words:"<<count_number_of_words_in_string_cpp_v1(c_string)<<endl;
 
 
 
