@@ -43,23 +43,11 @@ int count_most_consecutive_one_v1_c(uint32_t number){
     return max;
 }
 
-int count_most_repeated_map_c(int *a  , int size ){
-    if(size  <=1)
-        return -1;
-    int max=0;
-    char seen[256]={0};
-    for (int i = 0; i < size ; i++){
-        seen[a[i]]++;
-        if(seen[a[i]] > max){
-            max=seen[a[i]];
-        }
-    }
-    return max;
-}
+
 int count_most_consecutive_one_cpp(uint32_t number) {
     if(number ==0)
         return 0;
-    std::bitset<sizeof(int)*8> bits(number); // convert the integer to a bitset
+    std::bitset<sizeof(uint32_t)*8> bits(number); // convert the integer to a bitset
     int max = 0;
     int count = 0;
     
@@ -78,7 +66,7 @@ int count_most_consecutive_one_cpp(uint32_t number) {
 }
 
 int count_most_consecutive_one_v1_cpp(uint32_t number)  {
-    std::bitset<sizeof(int)*8> bits(number); // convert the integer to a bitset
+    std::bitset<sizeof(uint32_t)*8> bits(number); // convert the integer to a bitset
     
     int max = 0;
     int count = 0;
