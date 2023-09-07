@@ -29,7 +29,7 @@ pair<int , int> count_zero_one_cpp(uint32_t number){
     //int one= std::count(binary.to_string().begin() ,binary.to_string().end() , '1');
     int one= binary.count();//to count ones
     int zero= (sizeof(number)*8) - one;
-    return make_pair<>(one , zero);
+    return make_pair(one , zero);
 }
 
 int main(){
