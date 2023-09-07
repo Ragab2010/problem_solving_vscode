@@ -9,6 +9,7 @@
 
 using namespace std;
 /****************************************************************/
+//prefer
 int count_number_of_words_in_string_simpleVersion_c(char * cstring){
     int len = strlen(cstring);
     if(len <=1)
@@ -18,10 +19,12 @@ int count_number_of_words_in_string_simpleVersion_c(char * cstring){
     
     for (int i = 0; i < len;)
     {
+            //skip all the none alphabetic character
         if(!isalpha(cstring[i])){
             i++;
         }else{
-            count++;
+            count++;//count world
+            //skip all the alphabetic character
             while(isalpha(cstring[i]) && i < len){
                 i++;
             }
@@ -135,7 +138,7 @@ int count_number_of_words_in_string_cpp_v1(string cppstring){
     return word_count; 
 }
 
-
+//prefer
 int count_number_of_words_in_string_cpp_v2(string cppstring){
     std::stringstream ss(cppstring);
     int word_count = 0;
@@ -151,6 +154,7 @@ int count_number_of_words_in_string_cpp_v2(string cppstring){
     
     return word_count; 
 }
+
 int main(){
 
     cout<<"---------------------count_number_of_words_in_string_c-----------------"<<endl;
