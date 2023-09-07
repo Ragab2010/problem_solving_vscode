@@ -28,6 +28,25 @@ int count_most_ones_between_zeros_number_c(uint32_t number){
     return max;    
 }
 
+//prefer
+int count_most_ones_between_zeros_number_c_v1(uint32_t input){
+
+    int count =0; 
+    int max = 0;
+    while(input){
+        if(input & 1){
+            count++;
+        }else{
+            if(count > max)
+                max = count;
+            count=0;
+        }
+        input >>=1;
+    }
+    return max;
+}
+
+
 int count_most_ones_between_zeros_number_cpp(uint32_t number) {
     std::bitset<32> binary(number);
     string cppstring = binary.to_string();
@@ -45,6 +64,7 @@ int count_most_ones_between_zeros_number_cpp(uint32_t number) {
     return max;    
 }
 
+
 int main(){
     cout<<"---------------------count_most_ones_between_zeros_string_c-----------------"<<endl;
     uint32_t number=52982; // has 4 ones between zeros
@@ -53,6 +73,8 @@ int main(){
     cout<<"the max count   :"<<count_most_ones_between_zeros_number_c(number)<<endl;
     cout<<"---------------------count_most_ones_between_zeros_string_cpp-----------------"<<endl;
     cout<<"the max count   :"<<count_most_ones_between_zeros_number_cpp(number)<<endl;
+    cout<<"---------------------count_most_ones_between_zeros_string_c_v1-----------------"<<endl;
+    cout<<"the max count   :"<<count_most_ones_between_zeros_number_c_v1(number)<<endl;
 
 
 
