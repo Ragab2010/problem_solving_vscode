@@ -18,7 +18,6 @@ int count_long_number_of_words_in_string_c(char * cstring){
     while(i < len){
         if(!isalpha(cstring[i])){
             //cout<<"->count="<<count<<endl;
-            i++;
             if(count >max){
                 max = count;
             }
@@ -26,9 +25,8 @@ int count_long_number_of_words_in_string_c(char * cstring){
         }else{
            // cout<<cstring[i];
             count++;
-            i++;
         }
-
+    i++;
     }
     return max;
 }
@@ -102,6 +100,24 @@ int count_long_number_of_words_in_string_cpp_v1(string cppstring){
     return maxWordLength;
 }
 
+int count_long_number_of_words_in_string_cpp_v2(const string input){
+    stringstream ss(input);
+    string word;
+    int max = 0;
+    while(ss>>word){
+        int count=0;
+        for(char c:word){
+            if(isalnum(c)){
+                count++;
+            }
+        }
+        if(count > max ){
+            max = count;
+        }
+
+    }
+    return max;
+}
 int main(){
 
     cout<<"---------------------count_long_number_of_words_in_string_c-----------------"<<endl;
@@ -117,6 +133,9 @@ int main(){
 
     cout<<"---------------------count_long_number_of_words_in_string_cpp_v1-----------------"<<endl;
     cout<<"the long words is :"<<count_long_number_of_words_in_string_cpp_v1(c_string)<<endl;
+    
+    cout<<"---------------------count_long_number_of_words_in_string_cpp_v2-----------------"<<endl;
+    cout<<"the long words is :"<<count_long_number_of_words_in_string_cpp_v2(c_string)<<endl;
 
 
 
