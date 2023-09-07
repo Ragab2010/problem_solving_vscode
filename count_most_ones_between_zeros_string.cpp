@@ -23,20 +23,17 @@ int count_most_ones_between_zeros_string_c(char * cstring){
 }
 
 int count_most_ones_between_zeros_string_cpp(string cppstring) {
-    int len = cppstring.size();
-    if(len <= 1)
-        return -1;
-    int max = 0;
-    for (int i = 0; i < len; i++) {
-        if (cppstring[i] == '0') {
-            int count = strspn(&cppstring[i] + i, "1");
-            //cout<<count<<endl;
-            if (count > max) {
+    int count = 0 , max = 0;
+    for(char c : cppstring){
+        if(c == '1'){
+            count++;
+        }else{
+            if(count > max )
                 max = count;
-            }
+            count=0;
         }
     }
-    return max;    
+    return max; 
 }
 
 
