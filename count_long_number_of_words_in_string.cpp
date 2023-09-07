@@ -8,6 +8,7 @@
 
 using namespace std;
 /****************************************************************/
+//prefer
 int count_long_number_of_words_in_string_c(char * cstring){
     if(cstring == NULL)
         return -1;
@@ -16,15 +17,14 @@ int count_long_number_of_words_in_string_c(char * cstring){
         return -1;
     int  i = 0 , max = 0 , count = 0;
     while(i < len){
-        if(!isalpha(cstring[i])){
-            //cout<<"->count="<<count<<endl;
+        //check if the charater is alphabtic char
+        if(isalpha(cstring[i])){
+            count++;
+        }else{//if no check the max and make counter zero
             if(count >max){
                 max = count;
             }
             count=0;
-        }else{
-           // cout<<cstring[i];
-            count++;
         }
     i++;
     }
@@ -100,6 +100,7 @@ int count_long_number_of_words_in_string_cpp_v1(string cppstring){
     return maxWordLength;
 }
 
+//prefer
 int count_long_number_of_words_in_string_cpp_v2(const string input){
     stringstream ss(input);
     string word;
@@ -133,7 +134,7 @@ int main(){
 
     cout<<"---------------------count_long_number_of_words_in_string_cpp_v1-----------------"<<endl;
     cout<<"the long words is :"<<count_long_number_of_words_in_string_cpp_v1(c_string)<<endl;
-    
+
     cout<<"---------------------count_long_number_of_words_in_string_cpp_v2-----------------"<<endl;
     cout<<"the long words is :"<<count_long_number_of_words_in_string_cpp_v2(c_string)<<endl;
 
