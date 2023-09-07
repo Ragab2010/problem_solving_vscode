@@ -64,6 +64,26 @@ std::vector<int> parse_stringArray_v1(const std::string& input) {
     return result; // Return the vector of parsed integers
 }
 
+std::vector<int> parse_stringArray_v2(const std::string& input){
+    //create the inputstream hold the input string
+    std::istringstream ss(input);
+    //create the vector that's will have the result
+    std::vector<int> intArray;
+
+    //ignore the { and space from begin of the string array 
+    while(!isdigit(ss.peek())){
+        ss.ignore();
+    }
+    //while with getline with delemiter ',' and put it at the word string
+    std::string word;
+    while(getline(ss ,word, ',' )){
+    //parse the word string by stod  and push_back it into vector
+        int number = stod(word);
+        intArray.push_back(number);
+    }
+    //return the vector
+    return intArray;
+}
 int main(){
 
     cout<<"---------------------parse_stringArray_C-----------------"<<endl;
@@ -82,6 +102,14 @@ int main(){
 
     //Print the parsed integers
     for (int num : parsed_array) {
+        std::cout << num << ", ";
+    }
+    std::cout << "\n";
+    cout<<"---------------------parse_stringArray_v2-----------------"<<endl;
+    std::vector<int> parsed_array2 = parse_stringArray_v2(arrStringcpp);
+
+    //Print the parsed integers
+    for (int num : parsed_array2) {
         std::cout << num << ", ";
     }
     std::cout << "\n";
