@@ -48,7 +48,7 @@ int number_of_missing_numbers=0;
 
     for (int i=arr[0] , j=0; j < arr_size; i++) {
         if ( i != arr[j]){
-            number_of_missing_numbers ++;
+            number_of_missing_numbers++;
         }else{
             j++;
         }
