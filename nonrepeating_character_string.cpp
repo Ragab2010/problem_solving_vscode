@@ -3,7 +3,7 @@
 #include<cctype>
 #include<algorithm>
 
-#define NUM_CHAR 256U
+#define NUM_CHAR 128U
 
 
 using namespace std;
@@ -35,7 +35,11 @@ int main(){
     char cstring[]= "hello world hi hey";
     cout<<"the origin:"<<cstring<<endl;
     int index = nonrepeating_character_string_c(cstring);
-    cout<<"nonrepeating_character is:"<<cstring[index]<<endl;
+    if(index == -1){
+        cout<<"there no nonrepeating_character" <<endl;
+    }else{
+        cout<<"nonrepeating_character is:"<<cstring[index]<<endl;
+    }
 
     return 0;
 }
