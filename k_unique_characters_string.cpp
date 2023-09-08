@@ -28,6 +28,80 @@ Input:  "2aabbcbbbadef"
 Output: "bbcbbb"
 */
 using namespace std;
+
+
+/*********************************************************************************/
+
+//prefer
+string KUniqueCharacters_cpp(string str){
+        int k = stod(str);//to convert the number from string to int
+
+        string result;//result string
+        for (size_t i = 1; i < str.length(); i++) {
+                //map we can replace it by char map[128]
+                unordered_map<int,char> map;
+                string newString;//newstring
+                for (size_t j = i; j < str.length(); j++){
+                    //check if the characters is unique and less than k(num)
+                        if(map.size() <= k){
+                                map[str[j]]++;
+                                newString +=str[j];
+                        }
+                }
+                //check if the newString is longer than the old result
+                if(newString.length() >= result.length()){
+                        result = move(newString);
+                }
+        }
+        return result;
+}
+
+
+
+int getSizeOfMap2(char * freq_char){
+        int size =0;
+        for (int i = 0; i < 128; i++){
+                if(freq_char[i] >0){
+                size++;
+                }
+        }
+        return size;
+}
+//prefer
+char* KUniqueCharactersC(const char * str){
+        int k = strtol(str , nullptr , 10);
+        int len = strlen(str);
+
+        char result[len];
+        for (size_t i = 1; i < len; i++) {
+                char map[128]={0};
+                //int map_size = 0;
+                char newString[len];
+                int newString_index=0;
+                for (size_t j = i; j < len; j++){
+                        if(getSizeOfMap2(map) <= k){
+                                map[str[j]]++;
+                                newString[newString_index] =str[j];
+                                newString_index++;
+                        }
+                }
+                newString[newString_index]='\0';
+                if(strlen(newString) >= strlen(result)){
+                        strcpy(result , newString);
+                }
+        }
+        //cout<<result<<endl;//print the result
+        /*or we can return the result*/
+        char * pResult = (char * )malloc(sizeof(char)*(strlen(result)+1));
+        if(pResult == nullptr){
+                return nullptr;
+        }
+        strcpy(pResult , result);
+        return pResult;
+}
+
+/***********************************************************************************************/
+
 #define NUM_CHAR 128U
 char* KUniqueCharacters(char* str) {
     int k = str[0] - '0'; // convert first char to int
@@ -66,6 +140,7 @@ int getSizeOfFreqArray(char * freq_char){
     }
     return size;
 }
+
 char * k_unique_characters_string_c(char *cstring){
     if(cstring== nullptr)
         return NULL;
@@ -147,7 +222,10 @@ int main(){
     char cstring[]="3aabacbebebe" ; // "2aabbcbbbadef";//"2aabbcbbbadef";
     cout<<"the origin:"<<cstring<<endl;
     char * pointer = k_unique_characters_string_c(cstring);
-    //cout<<KUniqueCharacters_v2(cstring)<<endl;
+    cout<<"---------------------KUniqueCharacters_cpp-----------------"<<endl;
+    cout<<KUniqueCharacters_cpp(cstring)<<endl;
+    cout<<"---------------------KUniqueCharactersC-----------------"<<endl;
+    cout<<KUniqueCharactersC(cstring)<<endl;
     //cout<<"k_unique_characters is:"<<pointer<<endl;
 
     return 0;
