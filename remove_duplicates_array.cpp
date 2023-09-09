@@ -28,11 +28,11 @@ vector<int>  remove_duplicate_cpp(vector<int> & v){
 
 }
 
-int remove_duplicate_c(int * a , int  size , int **new_array , int *new_size){
+bool remove_duplicate_c(int * a , int  size , int **new_array , int *new_size){
     //create new_array with a'size
     *new_array = (int *)malloc(sizeof(int) * size);
     if((*new_array) ==nullptr)
-        return -1;
+        return false;
     
     //move only the unique element 
     int newSize=0  , new_index=0;
@@ -53,7 +53,7 @@ int remove_duplicate_c(int * a , int  size , int **new_array , int *new_size){
     //resize the new_aray 
     *new_array =(int *)realloc(*new_array  , newSize*sizeof(int));
     *new_size=newSize;
-    return 1;
+    return true;
 }
 
 int main(){
