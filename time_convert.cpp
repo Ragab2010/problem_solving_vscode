@@ -1,18 +1,18 @@
 /*
- Coderbyte coding challenge: Time Convert
+Coderbyte coding challenge: Time Convert
 
- Using the C++ language, have the function TimeConvert(num) take the num
- parameter being passed and return the number of hours and minutes the parameter
- converts to (ie. if num = 63 then the output should be 1:3). Separate the
- number of hours and minutes with a colon.
+Using the C++ language, have the function TimeConvert(num) take the num
+parameter being passed and return the number of hours and minutes the parameter
+converts to (ie. if num = 63 then the output should be 1:3). Separate the
+number of hours and minutes with a colon.
 
- Sample test cases:
+Sample test cases:
 
- Input:  126
- Output: "2:6"
+Input:  126
+Output: "2:6"
 
- Input:  45
- Output: "0:45"
+Input:  45
+Output: "0:45"
  */
 
 #include <algorithm>
@@ -58,7 +58,7 @@ string TimeConvert(uint64_t minutes) {
       hours /= 10;
     }
   }
-
+cout<<"before reverse:"<<result<<endl;
   reverse(begin(result), end(result));
 
   return result;
