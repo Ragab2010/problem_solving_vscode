@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<unordered_set>
 
 /*
     for (int i = 0; i < size; i++)
@@ -20,6 +21,42 @@
 */
 
 using namespace std;
+
+//prefer
+int * remove_consecutive_duplicates_c_v1(int * a , int size  , int *newSize){
+    int * new_array = (int *) malloc(sizeof(int) * size);
+    int new_array_index = 0;
+    if(new_array ==NULL)
+        return NULL;
+    //copy unique only  form consecutive 
+    int  l = 0 , h = 0 , new_size=0;
+    //arr:1 1 1 1 3 3 3 6 6 6 6 3 3 3 9 9 8 2 1 4 7 7 7 7 7 
+    //loop on array  by two pointer  low (l) , high(h)  with limit to the size of array 
+    // every elements consecutive if(a[l] == a[h])->true  increment as 1 1 1 1 
+    // l point on 1 , h point on thrid 1 
+    //when if(a[l] == a[h])->false  as l point on 1 and h point on 3
+    //here we copy a[l] element 1 ,  and increment l to be like h (l = h)
+    //after copy a[l] and (l=h)  , increment(new_size) index of new_array 
+    for(int i = 1 ; i<size; i++){
+        if(a[i] != a[i-1]){
+            new_array[new_array_index]= a[i-1];
+            new_array_index++;
+        }
+    }
+    //add the last element
+    new_array[new_array_index]= a[size-1];
+    new_array_index++;
+    //resize the new_array with to fit with the last element (new_size)
+    int *temp = (int *) realloc(new_array , sizeof(int)*new_array_index);
+    if(new_array == NULL) {
+        free(new_array); // free the old block of memory
+        return NULL;
+    }
+
+    *newSize = new_array_index;
+    return temp;
+}
+
 
 int * remove_consecutive_duplicates_c(int * a , int size  , int *newSize){
     int * new_array = (int *) malloc(sizeof(int) * size);
@@ -59,16 +96,38 @@ int * remove_consecutive_duplicates_c(int * a , int size  , int *newSize){
 
 }
 
-vector<int>& remove_consecutive_duplicates_cpp(vector<int> & v){
-    //use unique function to  remove_consecutive_duplicates
-    auto last_element = std::unique(v.begin(), v.end());
-    //resize the vector from v.begin() to v.last_element
-    v.resize(std::distance(v.begin() , last_element));
-    v.shrink_to_fit();
+//prefer
+std::vector<int> remove_consecutive_duplicates_cpp(vector<int> &v){
+    std::vector<int> result;
+    std::unordered_set<int> seen;
+    for(auto number : v){
+        if(seen.insert(number).second == true){
+            result.push_back(number);
+        }
+    }
+    return move(result);
 
-    return v;
-    
 }
+
+vector<int> remove_consecutive_duplicates_cpp_v(vector<int>  v){
+    //insert all the vector element at the unordered_set so there not duplication
+    unordered_set<int> seen(v.begin() , v.end());
+    vector<int> result;
+    for(auto num_element: v){
+        //check if there num_element at seen:
+        //if it is not point on seen.end() , so there is an element  
+        //push it at result and then remove it from seen 
+        //c++17 if(auto it  = seen.find(num_element) ; it!= seen.end()){
+        auto it  = seen.find(num_element);
+        if( it!= seen.end()){
+            result.push_back(num_element);
+            seen.erase(it);
+        }
+    }
+    return std::move(result);
+}
+
+
 
 int main(){
 
@@ -98,7 +157,7 @@ int main(){
         cout<<it<<" ";
     }
     cout<<endl;
-    std::vector<int> &new_V = remove_consecutive_duplicates_cpp(v);
+    std::vector<int> new_V = remove_consecutive_duplicates_cpp(v);
     cout<<"the new   :";
     for (auto  it  : v)
     {
