@@ -5,6 +5,60 @@
 
 using namespace std;
 
+/*********************************************************/
+//prefer
+void reverse(char* str ,int l , int h){
+    int high = h;
+    int low = l;
+    while(low <=high){
+        char temp =str[low];
+        str[low]=str[high];
+        str[high]=temp;
+        low++;
+        high--;
+    }
+    
+}
+//prefer
+void reverseWordC(char* str){
+    if(str == nullptr)
+        return ;
+    int len = strlen(str);
+    //reverse all the str
+    reverse(str , 0 , len-1);
+    //revese every wold
+    int  l =0 , h = 0;
+    while( l < len && h <len){
+        if(!isspace(str[h])){
+            h++;
+        }else{
+            reverse(str , l , h-1);
+            h++;
+            l=h;
+        }
+    }
+    //reverse the last word
+    reverse(str , l , h-1);
+
+}
+//prefer
+void reverseWordCpp(string &str){
+    reverse(str.begin() , str.end());
+    istringstream ss(str);
+    string word{};
+    string newString{};
+    while(ss>>word){
+        reverse(word.begin() , word.end());
+        newString +=word;
+        newString +=' ';
+    }
+    str.clear();
+    str.shrink_to_fit();
+    str = move(newString);
+    str.shrink_to_fit();
+
+}
+/*********************************************************/
 void reverse_word_c(char * cstring , int start , int end){
     int len = strlen(cstring);
     if(len <= 1)
