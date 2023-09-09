@@ -37,21 +37,21 @@ void remove_string_consecutive_duplicates_c(char * cstring){
 
     
 }
-
+//prefer
 void remove_string_consecutive_duplicates_cpp(string &cppstring){
-    int len = cppstring.size();
-    int seen[256]={0};
+    int len = cppstring.length();
     int current_pos=0;
-    for (int i = 0; i < len; i++)
-    {
-        if(seen[cppstring[i]] ==0){
-            seen[cppstring[i]]++;
-            cppstring[current_pos] = cppstring[i];
+    
+    int l = 0 , h=0;
+    for(int i = 1 ; i<len; i++){
+        if(cppstring[i] != cppstring[i-1]){
+            cppstring[current_pos]=cppstring[i-1];
             current_pos++;
         }
     }
+    cppstring[current_pos]=cppstring[len-1];
+    current_pos++;
     cppstring.erase(current_pos);
-    cppstring[current_pos]='\0';
     cppstring.shrink_to_fit();
     
 }
