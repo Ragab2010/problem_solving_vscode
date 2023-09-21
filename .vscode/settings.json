@@ -62,7 +62,8 @@
         "compare": "cpp",
         "concepts": "cpp",
         "numbers": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "iomanip": "cpp"
     }   
     
 }
