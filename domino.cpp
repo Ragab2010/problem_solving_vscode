@@ -30,8 +30,8 @@ int the minimum number of operations required to make the arrangment valid.
 
 
 int getMinimumOperations(string machines) 
-const int MOD = 1000000007;
 */
+const int MOD = 1000000007;
 
 
 int countDistinctColorings(vector<string> domino) {
