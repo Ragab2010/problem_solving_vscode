@@ -8,28 +8,26 @@ using namespace std;
 /*
 
 c++:
-there are n machines placed in a line in manufacturing unit. Their arrangment is represented as a binnary srting machines,
-of length n, where a machine is running if the charater is '1' and is not running if is '0'. in one operation, the state of a machine can be fllipped,
-'1' is changed to '0' or vice versa, and the operation can be applied any number of times.
+A valid domino arrangement is given which is represented using two strings in array domino.
+all dominoes are unique (of size 1*2 or 2*1) and each domino is represented by an English charater (lowercase or uppercase)
 
-an arrangment is valid if no running machine has a non-running machine to its immediate right , i.e., the final arrangment doesn't contain "10" as a sub string
+Each domino can be colored using any one of the colors Red,Green,or Blue (RGB).
+Find the number of distinct ways to color the dominoes such that no two adjacent dominoes have the same color.
+since the answer can be large, return the answer modulo(10^9 +7 ).
+Note: Both halves of a domino are one olor.
 
-find the minimum number of operations required to form a valid arrangment.
+Example:
+consider domino ={"baa", "bcc"};
+The valid coloring of dominoes are : {{RGG, RBB} , {RBB, RGG} , {GRR,GBB} , {GBB , GRR} , {BGG, BRR} , {BRR , BGG}}; Thus, the answer is 6;
 
-example 
-initially, machines ="10110". optimally , machines[0] and machines[4] are flipped to obtain "00111" after 2 operations. The answer is 2.
+Function description:
+complete the function countDistinctColorings in the editor below.
 
-function description :
-complete the function getMinimumOperations in the editor below
-
-getMinimumOperations has following parameter: 
-string machines: a binary string that denotes the inital arrangment of machines
+countDistinctColorings has the following parameter: string domino[2]: two strings of equal length that denote the arrangement of dominoes
+int countDistinctColorings(vector<string> domino)
 
 Returns:
-int the minimum number of operations required to make the arrangment valid.
-
-
-int getMinimumOperations(string machines) 
+int total number of distinct valid colorings, taking modulo(10^9 + 7)
 */
 const int MOD = 1000000007;
 
