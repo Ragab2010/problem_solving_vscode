@@ -30,6 +30,26 @@ int the minimum number of operations required to make the arrangment valid.
 int getMinimumOperations(string machines) 
 
 */
+int getMinimumOperations0(string machines){
+    int start =0;
+    int end = machines.length();
+    while (machines[start]=='0' && start < end) start++;
+    while (machines[end  ]=='1' && start < end) end--;
+    int zeroCount=0;
+    int oneCount=0;
+    for(int i=start; i <end; i++){
+        if(machines[i]=='0'){
+            zeroCount++;
+        }
+        if(machines[i]=='1'){
+            oneCount++;
+        }
+    }
+    cout<<"zeroCount:"<<zeroCount<<endl;
+    cout<<"oneCount:"<<oneCount<<endl;
+    return std::min(zeroCount, oneCount);
+}
+
 int getMinimumOperations(string machines){
     int len = machines.length();
     int count = 0;
@@ -162,7 +182,6 @@ int getMinimumOperations4(std::string machines) {
             dp[i][1] = std::min(dp[i - 1][0], dp[i - 1][1]);
         }
     }
-
     // Return the minimum of operations needed at the end
     return std::min(dp[n][0], dp[n][1]);
 }
@@ -171,6 +190,9 @@ int main() {
     // int operations = getMinimumOperations(machines);
     string machines2 = "01110010010110001";
     int operations2 = getMinimumOperations(machines2);
+    int operations3 = getMinimumOperations0(machines2);
     cout << operations2 << endl;
+    cout << operations3<< endl;
+
 
 }
