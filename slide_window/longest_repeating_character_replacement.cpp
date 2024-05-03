@@ -29,7 +29,7 @@ int characterReplacement(std::string s, int k) {
 
 
 int characterReplacement2(std::string s, int k) {
-    std::vector<int> count(26);
+    std::vector<int> count(128);
     int maxCount = 0;
     
     int startWindow = 0;
@@ -38,19 +38,21 @@ int characterReplacement2(std::string s, int k) {
     int result = 0;
     
     while (endWindow < s.size()) {
-        count[s[endWindow] - 'A']++;
-        maxCount = std::max(maxCount, count[s[endWindow] - 'A']);
+
+        int rightChar= s[endWindow];
+        count[rightChar]++;
+
+        maxCount = std::max(maxCount, count[rightChar]);
         if (endWindow - startWindow + 1 - maxCount > k) {
-            count[s[startWindow] - 'A']--;
+        int leftChar= s[startWindow];
+            count[leftChar]--;
             startWindow++;
         }
-        result = std::max(result, endWindow - startWindow + 1);
         endWindow++;
     }
     
-    return result;
+    return endWindow - startWindow;
 }
-
 
 int main() {
     // Test cases
