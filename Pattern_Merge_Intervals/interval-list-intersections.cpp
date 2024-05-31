@@ -9,8 +9,18 @@ vector<vector<int>> intervalIntersection(vector<vector<int>>& firstList, vector<
     int firstListSize = firstList.size();
     int secondListSize = secondList.size();
     int firstIndexList = 0, secondIndexList = 0;
-
+        /*  firstList = [[0,2],[5,10],[13,23],[24,25]], 
+            secondList = [[1,5],[8,12],[15,24],[25,26]]
+            Output:      [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
+        */
     while (firstIndexList < firstListSize && secondIndexList < secondListSize) {
+                    //we get the left  and right to calculate the Intersection
+            /*  firstList = [[0,2],[5,10],[13,23],[24,25]], 
+                secondList = [[1,5],[8,12],[15,24],[25,26]]
+                left = max( 0 , 1) =1  , right = min(2,5) = 2
+                if(left <= right) -> ans.push_back([1,2]);
+                if(2 < 5) -> firstIndexList++ else ++secondIndexList;
+            */
         int left = max(firstList[firstIndexList][0], secondList[secondIndexList][0]);
         int right = min(firstList[firstIndexList][1], secondList[secondIndexList][1]);
 
