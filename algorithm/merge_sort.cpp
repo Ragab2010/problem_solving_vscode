@@ -1,10 +1,56 @@
-#include<iostream>
-#include<cmath>
+
+#include <iostream>
+#include <vector>
+#include <algorithm> // for std::copy, std::merge
 
 
 using namespace std;
+/***************************************************/
 
+void merge_cpp(const std::vector<int>& left_array, const std::vector<int>& right_array, std::vector<int>& origin_array) {
+    std::merge(left_array.begin(), left_array.end(), right_array.begin(), right_array.end(), origin_array.begin());
+}
 
+void merge_sort_recursive_cpp(std::vector<int>& array) {
+    int size = array.size();
+    if (size < 2) {
+        return;
+    }
+
+    int middle = size / 2;
+
+    std::vector<int> left_array(array.begin(), array.begin() + middle);
+    std::vector<int> right_array(array.begin() + middle, array.end());
+
+    merge_sort_recursive_cpp(left_array);
+    merge_sort_recursive_cpp(right_array);
+
+    merge_cpp(left_array, right_array, array);
+}
+
+// int main() {
+//     std::vector<int> arr = {6, 3, 0, 4, 2, 1, 9, 12, 8, 16, 11, 5, 15};
+
+//     std::cout << "--------------------- Merge Sort ---------------------" << std::endl;
+//     std::cout << "The original array: ";
+//     for (int num : arr) {
+//         std::cout << num << " ";
+//     }
+//     std::cout << std::endl;
+
+//     std::vector<int> sorted_arr = arr;
+//     merge_sort_recursive_cpp(sorted_arr);
+
+//     std::cout << "The sorted array: ";
+//     for (int num : sorted_arr) {
+//         std::cout << num << " ";
+//     }
+//     std::cout << std::endl;
+
+//     return 0;
+// }
+
+/***************************/
 void merge( int *left_array , int *right_array ,int *orgin_array ,  int size_of_leftArray , int size_of_rightArray ){
     int left_index_array_counter=0;
     int right_index_array_counter=0;
