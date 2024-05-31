@@ -2,6 +2,18 @@
 
 
 using namespace std;
+int partition_cpp(int *a , int low , int high ){
+    int lastIndex = low; 
+    int pivotIndex = high; 
+    for(int index = low ; index <=high ; index++ ){
+        if(a[index] < a[pivotIndex]){
+            std::swap(a[index] , a[lastIndex]);
+            lastIndex++;
+        }
+    }
+    std::swap(a[pivotIndex] , a[lastIndex]);
+    return lastIndex;
+}
 
 int partition(int *a , int low , int high){
     int pivot_index = high;
