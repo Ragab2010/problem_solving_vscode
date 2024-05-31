@@ -1,20 +1,22 @@
-#include<iostream>
 
+#include <iostream>
+#include <algorithm> // for std::swap and std::copy
+using namespace std;
 
 using namespace std;
-void insertion_sort(int *a , int size){
-    if(size <=1)
-        return ;
-    for (int i = 1; i < size; i++){
-        int j =i;
-        while(a[j]<=a[j-1] && j >0){
-            int temp = a[j];
-            a[j]=a[j-1];
-            a[j-1]=temp;
-            j--;
+void insertion_sort(int *a, int size) {
+    if (size <= 1) {
+        return;
+    }
+    for (int endIndex = 1; endIndex < size; endIndex++) {
+        int backIndex = endIndex;
+        while (backIndex > 0 && a[backIndex] < a[backIndex - 1]) {
+            std::swap(a[backIndex], a[backIndex - 1]);
+            backIndex--;
         }
     }
 }
+
 
 
 int main(){
