@@ -16,11 +16,19 @@ bool is_prime(int number){
     return true;
 }
 
+bool isPrime(int number){
+    if(number <=1)return false;
+    for(int i =2 ; i*i <=number ; i++){
+        if(number%i == 0) return false;
+    }
+    return true;
+
+}
 
 int main(){
 
     cout<<"---------------------is_prime C , Cpp -----------------"<<endl;
-    bool stauts  = is_prime(6);
+    bool stauts  = isPrime(6);
     if(stauts == true)
         cout<<"the number is prime"<<endl;
     else
