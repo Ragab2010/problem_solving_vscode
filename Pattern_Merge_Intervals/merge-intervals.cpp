@@ -46,8 +46,8 @@ vector<vector<int>> merge(vector<vector<int>>& intervals) {
     ans.emplace_back(intervals[0]);//[1,3]
     for(int intervalIndex = 1 ; intervalIndex < intervals.size() ;intervalIndex++){
         /*ans = [1,3]     intervals= [2,6],[8,10],[15,18]
-        6 < 8 == true So, [8,10] is appended to ans, resulting in ans = [[1,6], [8,10]].
         3 < 2 == false so we merge them by updating the end of the last interval ans to max(3, 6) = 6. Now,
+        6 < 8 == true So, [8,10] is appended to ans, resulting in ans = [[1,6], [8,10]].
         */
         if(ans.back()[1] < intervals[intervalIndex][0]){
             ans.emplace_back(intervals[intervalIndex]);
